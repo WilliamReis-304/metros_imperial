@@ -4,24 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <title>Calculadora de Gorjetas</title>
+    <title>Conversor de Unidades de Comprimento</title>
 </head>
 <body>
     <div class="container">
-        <h1>Calculadora de Gorjetas</h1>
-        <label for="totalConta">Valor Total da Conta (R$):</label>
-        <input type="number" id="totalConta" placeholder="Ex: 100" min="0">
+        <h1>Conversor de Comprimento</h1>
+        <label for="metros">Digite a distância em metros:</label>
+        <input type="number" id="metros" placeholder="Ex: 100" min="0">
 
-        <label for="qualidadeServico">Qualidade do Serviço:</label>
-        <select id="qualidadeServico">
-            <option value="bom">Bom (20%)</option>
-            <option value="regular">Regular (10%)</option>
-            <option value="ruim">Ruim (5%)</option>
+        <label for="unidadeDestino">Converter para:</label>
+        <select id="unidadeDestino">
+            <option value="jarda">Jarda</option>
+            <option value="pe">Pé</option>
+            <option value="polegada">Polegada</option>
+            <option value="milha">Milha</option>
         </select>
 
-        <button onclick="calcularGorjeta()">Calcular Gorjeta</button>
+        <button onclick="converterUnidade()">Converter</button>
 
-        <div class="result" id="resultadoGorjeta"></div>
+        <div class="result" id="resultado"></div>
     </div>
 
     <script src="script.js"></script>

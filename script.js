@@ -1,33 +1,34 @@
-// Função de callback para calcular a gorjeta com base na qualidade do serviço
-const calcularGorjeta = () => {
-    const totalConta = parseFloat(document.getElementById("totalConta").value);
-    const qualidadeServico = document.getElementById("qualidadeServico").value;
+// Função para converter metros para outras unidades de comprimento
+const converterUnidade = () => {
+    const metros = parseFloat(document.getElementById("metros").value);
+    const unidadeDestino = document.getElementById("unidadeDestino").value;
+    let resultado;
 
-    // Validação para garantir que o valor da conta é um número positivo
-    if (isNaN(totalConta) || totalConta <= 0) {
-        document.getElementById("resultadoGorjeta").innerText = "Por favor, insira um valor válido para a conta.";
+    // Validação para garantir que o valor inserido é positivo
+    if (isNaN(metros) || metros <= 0) {
+        document.getElementById("resultado").innerText = "Por favor, insira um valor válido em metros.";
         return;
     }
 
-// Definir as porcentagens de gorjeta com base na qualidade do serviço
-const calcularPorcentagem = (qualidade, callback) => {
-        let porcentagem;
-        if (qualidade === "bom") {
-            porcentagem = 0.20;
-        } else if (qualidade === "regular") {
-            porcentagem = 0.10;
-        } else if (qualidade === "ruim") {
-            porcentagem = 0.05;
-        }
-        return callback(porcentagem);
-    };
-
-// Arrow function para calcular o valor da gorjeta
-const calcularValorGorjeta = porcentagem => totalConta * porcentagem;
-
-// Chamada da função de callback para obter o resultado final
-const valorGorjeta = calcularPorcentagem(qualidadeServico, calcularValorGorjeta);
-
-// Exibir o resultado
-document.getElementById("resultadoGorjeta").innerText = `Gorjeta: R$ ${valorGorjeta.toFixed(2)}`;
+// Realizar a conversão com base na unidade de destino selecionada
+switch (unidadeDestino) {
+    case "jarda":
+        resultado = metros * 1.094;
+        document.getElementById("resultado").innerText = `${metros} metros é igual a ${resultado.toFixed(3)} jardas.`;
+        break;
+    case "pe":
+        resultado = metros * 3.281;
+        document.getElementById("resultado").innerText = `${metros} metros é igual a ${resultado.toFixed(3)} pés.`;
+        break;
+    case "polegada":
+        resultado = metros * 39.37;
+        document.getElementById("resultado").innerText = `${metros} metros é igual a ${resultado.toFixed(3)} polegadas.`;
+        break;
+    case "milha":
+        resultado = metros * 0.000621;
+        document.getElementById("resultado").innerText = `${metros} metros é igual a ${resultado.toFixed(6)} milhas.`;
+        break;
+    default:
+        document.getElementById("resultado").innerText = "Selecione uma unidade de medida válida.";
+}
 };
