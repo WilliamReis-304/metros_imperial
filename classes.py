@@ -1,38 +1,29 @@
-class Elevador:
-    def __init__(self, totalCapacidade, totalAndar):
-        self.totalCapacidade = totalCapacidade  # Capacidade máxima do elevador
-        self.atualCapacidade = 0  # Capacidade atual do elevador (inicialmente vazio)
-        self.totalAndar = totalAndar  # Total de andares do prédio
-        self.atualAndar = 0  # Andar atual do elevador (inicialmente no térreo)
+# Classe principal Material
+class Material:
+    def __init__(self, titulo, autor_ou_editora):
+        self.titulo = titulo
+        self.autor_ou_editora = autor_ou_editora
 
-    def Subir(self):
-        if self.atualAndar < self.totalAndar - 1:  # Verifica se não está no último andar
-            self.atualAndar += 1
-            print(f"Subindo para o andar {self.atualAndar}")
-        else:
-            print("VOCÊ ESTÁ NO ANDAR MAIS ALTO!")
+    def exibir_informacoes(self):
+        print(f"Título: {self.titulo}")
+        print(f"Autor/Editora: {self.autor_ou_editora}")
 
-    def Descer(self):
-        if self.atualAndar > 0:  # Verifica se não está no térreo
-            self.atualAndar -= 1
-            print(f"Descendo para o andar {self.atualAndar}")
-        else:
-            print("VOCÊ JÁ ESTÁ NO TÉRREO!")
+# Subclasse Livro
+class Livro(Material):
+    def __init__(self, titulo, autor_ou_editora, genero):
+        super().__init__(titulo, autor_ou_editora)
+        self.genero = genero
 
-    def Entrar(self):
-        if self.atualCapacidade < self.totalCapacidade:  # Verifica se não está cheio
-            self.atualCapacidade += 1
-            print(f"Entrando uma pessoa. Capacidade atual: {self.atualCapacidade}/{self.totalCapacidade}")
-        else:
-            print("O ELEVADOR ESTÁ CHEIO!")
+    def exibir_informacoes(self):
+        super().exibir_informacoes()  # Chama o método da classe Material
+        print(f"Gênero: {self.genero}")
 
-    def Sair(self):
-        if self.atualCapacidade > 0:  # Verifica se há alguém no elevador
-            self.atualCapacidade -= 1
-            print(f"Saindo uma pessoa. Capacidade atual: {self.atualCapacidade}/{self.totalCapacidade}")
-        else:
-            print("NÃO TEM NINGUÉM.")
+# Subclasse Revista
+class Revista(Material):
+    def __init__(self, titulo, autor_ou_editora, edicao):
+        super().__init__(titulo, autor_ou_editora)
+        self.edicao = edicao
 
-
-
-
+    def exibir_informacoes(self):
+        super().exibir_informacoes()  # Chama o método da classe Material
+        print(f"Edição: {self.edicao}")
